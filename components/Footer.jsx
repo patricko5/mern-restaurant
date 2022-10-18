@@ -1,9 +1,11 @@
-import React from 'react';
+import Image from "next/image";
 
 const Footer = () => {
   return (
-    <div>Footer</div>
-  )
-}
+    <div>
+      Footer
+    </div>
+  );
+};
 
-export default Footer
+export default Footer;
