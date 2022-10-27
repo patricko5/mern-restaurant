@@ -1,3 +1,45 @@
 .container{
+    padding: 50px;
+    display: flex; /** the page is divided into two horizontal sections. */
+}
+
+.left {
+    flex: 2;
+}
+
+.right {
+    flex: 1;
+}
+
+.wrapper {
+    width: 50%;
+    max-height: 300px;
+    background-color: #333;
+    padding: 50px;
+    padding-top: 10px;
+    flex-direction: column;
+    justify-content: space-between;
+    color: white;
+}
+
+.totalTextTitle {
+    margin-right: 10px;
+}
+
+.button {
+    background-color: white;
+    height: 30px;
+    color: teal;
+    font-weight: bold;
+    margin-top: 20px;
+    cursor: not-allowed;
+    border: none;
+    border-radius: 5px;
+    width: 200px;
+}
+.table {
+    width: 100%;
+    text-align: left;
+    margin-bottom: 50px;
     
 }
