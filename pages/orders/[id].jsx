@@ -20,7 +20,7 @@ const Order = () => {
                   <span className={styles.id}>8650198724</span>
                 </td>
                 <td>
-                  <span className={styles.name}>Patrick Orihuela</span>
+                  <span className={styles.name}>Zash Elvert</span>
                 </td>
                 <td>
                   <span className={styles.address}>4123 78 Ave NW</span>
@@ -35,6 +35,27 @@ const Order = () => {
         <div className={styles.row}>
           <div className={styles.status}>
             <Image src="/img/paid.png" width={30} height={30} alt="" />
+            <span>Payment</span>
+            <div className={styles.checkIcon}>
+            <Image src="/img/checked.png" width={30} height={30} alt="" />
+            </div>
+          </div>
+          <div className={styles.status}>
+            <Image src="/img/bake.png" width={30} height={30} alt="" />
+            <span>Preparing</span>
+            <div className={styles.checkIcon}>
+            <Image src="/img/checked.png" width={30} height={30} alt="" />
+            </div>
+          </div>
+          <div className={styles.status}>
+            <Image src="/img/bike.png" width={30} height={30} alt="" />
+            <span>Payment</span>
+            <div className={styles.checkIcon}>
+            <Image src="/img/checked.png" width={30} height={30} alt="" />
+            </div>
+          </div>
+          <div className={styles.status}>
+            <Image src="/img/delivered.png" width={30} height={30} alt="" />
             <span>Payment</span>
             <div className={styles.checkIcon}>
             <Image src="/img/checked.png" width={30} height={30} alt="" />
