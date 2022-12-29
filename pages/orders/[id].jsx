@@ -17,7 +17,7 @@ const Order = () => {
           <table className={styles.table}>
             <tbody>
               {/*It cause hydration errors if it is not inside a tbody  */}
-              <tr className={styles.tr}>
+              <tr className={styles.trTitle}>
                 <th>Order ID</th>
                 <th>Customer</th>
                 <th>Address</th>

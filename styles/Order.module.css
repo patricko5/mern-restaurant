@@ -23,7 +23,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  
 }
 
 .inProgress {
@@ -42,13 +41,11 @@
   }
 }
 
-
 .undone {
   display: flex;
   flex-direction: column;
   align-items: center;
   opacity: 0.3;
-  
 }
 
 .undone .checkedIcon,
@@ -61,14 +58,21 @@
 }
 
 .wrapper {
-  width: 50%;
+  width: 90%;
   max-height: 300px;
   background-color: #333;
+  color: white;
+
   padding: 50px;
   padding-top: 10px;
+  display: flex;
+  /* display, 
+  flex-direction, 
+  justify-content 
+  
+  are TOGETHER */
   flex-direction: column;
   justify-content: space-between;
-  color: white;
 }
 
 .totalTextTitle {
@@ -85,4 +89,52 @@
   border: none;
   border-radius: 5px;
   width: 200px;
+}
+@media screen and (max-width: 480px) {
+  .container {
+    flex-direction: column;
+  }
+  .trTitle {
+    display: none;
+  }
+  .tr {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+  }
+
+  .id::before {
+    content: "Order ID: ";
+    font-weight: 500;
+  }
+  .name::before {
+    content: "Customer: ";
+    font-weight: 500;
+  }
+  .address::before {
+    content: "Address: ";
+    font-weight: 500;
+  }
+  .total::before {
+    content: "Total: ";
+    font-weight: 500;
+  }
+  .row:last-child {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .done,
+  .undone,
+  .inProgress {
+    margin-bottom: 20px;
+  }
+
+  .wrapper {
+    width: 100%;
+  }
 }

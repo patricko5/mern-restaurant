@@ -7,7 +7,7 @@ const Cart = () => {
         <table className={styles.table}>
           <tbody>
             {/*It cause hydration errors if it is not inside a tbody  */}
-            <tr className={styles.tr}>
+            <tr className={styles.trTitle}>
               <th>Product</th>
               <th>Name</th>
               <th>Extras</th>
