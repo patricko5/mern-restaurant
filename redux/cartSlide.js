@@ -16,9 +16,9 @@ const cartSlice = createSlice({
     reset: (state) => {
       state = initialState;
     },
-
   },
 });
 
-export const {addProduct, reset} = cartSlice.actions;
+
+export const { addProduct, reset } = cartSlice.actions;
 export default cartSlice.reducer;

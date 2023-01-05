@@ -59,7 +59,7 @@
 
 .cart {
     position: relative;
-
+    cursor: pointer;
 }
 .counter {
     position: absolute;
@@ -86,4 +86,7 @@
   .item:nth-child(1){
     flex: 3;
   }
+}
+.logo {
+  cursor: pointer;
 }
