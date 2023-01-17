@@ -10,6 +10,7 @@ import {
 import { useRouter } from "next/router";
 import { reset } from "../redux/cartSlide";
 import axios from "axios";
+import OrderDetail from "../components/OrderDetail";
 // This values are the props in the UI
 
 const Cart = () => {
@@ -30,7 +31,6 @@ const Cart = () => {
         router.push(`/orders/${res.data._id}`);
       }
     } catch (err) {
-
       console.log(err);
     }
   };
@@ -160,7 +160,12 @@ const Cart = () => {
           </div>
           {open ? (
             <div className={styles.paymentMethods}>
-              <button className={styles.payButton} onClick={ () => setCash(true)}>CASH ON DELIVERY</button>
+              <button
+                className={styles.payButton}
+                onClick={() => setCash(true)}
+              >
+                CASH ON DELIVERY
+              </button>
               <PayPalScriptProvider
                 options={{
                   "client-id":
@@ -180,6 +185,7 @@ const Cart = () => {
           )}
         </div>
       </div>
+      {cash && (<OrderDetail total={cart.total} createOrder={createOrder}/>)}
     </div>
   );
 };
