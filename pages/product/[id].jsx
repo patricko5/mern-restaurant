@@ -29,11 +29,11 @@ const Product = ({ pizza }) => {
       setExtras((prev) => [...prev, option]);
     } else {
       changePrice(-option.price);
-      setExtras(extras.filter((extra) => extra._id !== option._id)); 
+      setExtras(extras.filter((extra) => extra._id !== option._id));
     }
   };
   const handleClick = () => {
-    dispatch(addProduct({ ...pizza, extras, price, quantity })); //Maybe somewhere here - Trace Code 
+    dispatch(addProduct({ ...pizza, extras, price, quantity })); //Maybe somewhere here - Trace Code
   };
 
   //console.log(extras);
@@ -97,14 +97,23 @@ const Product = ({ pizza }) => {
 };
 
 export const getServerSideProps = async ({ params }) => {
-  const res = await axios.get(
-    `http://localhost:3000/api/products/${params.id}`
-  );
-  return {
-    props: {
-      pizza: res.data,
-    },
-  };
+  try {
+    const res = await axios.get(
+      `http://localhost:3000/api/products/${params.id}`
+    );
+    return {
+      props: {
+        pizza: res.data,
+      },
+    };
+  } catch (error) {
+    console.error(error);
+    return {
+      props: {
+        pizza: {},
+      },
+    };
+  }
 };
 
 export default Product;
