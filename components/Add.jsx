@@ -7,9 +7,9 @@ const Add = ({ setClose }) => {
   const [file, setFile] = useState(null);
   const [title, setTitle] = useState(null);
   const [desc, setDesc] = useState(null);
-  const [prices, setPrices] = useState(null);
-  const [extra, setExtra] = useState(null);
+  const [prices, setPrices] = useState([]);
   const [extraOptions, setExtraOptions] = useState([]);
+  const [extra, setExtra] = useState(null);
 
   const changePrice = (e, index) => {
     const currentPrices = prices;
@@ -24,20 +24,44 @@ const Add = ({ setClose }) => {
     setExtraOptions((prev) => [...prev, extra]);
   };
 
-  const handleCreate = async () => {};
+  const handleCreate = async () => {
+    const data = new FormData();
+    data.append("file", file);
+    data.append("upload_preset", "uploads"); //make sure the folder in the cloud is the same
+    try {
+      const uploadRes = await axios.post(
+        "https://api.cloudinary.com/v1_1/dyk9lstek/image/upload",
+        data
+      );
+      // console.log(uploadRes.data);
+      const { url } = uploadRes.data;
+      const newProduct = {
+        title,
+        desc,
+        prices,
+        extraOptions,
+        img: url,
+      };
+
+      await axios.post("http://localhost:3000/api/products", newProduct);
+      setClose(true);
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
     <div className={styles.container}>
       <div className={styles.wrapper}>
         <span onClick={() => setClose(true)} className={styles.close}>
           X
         </span>
-        <h1>Add a new Pizza.</h1>
+        <h1>Add a new Pizza</h1>
         <div className={styles.item}>
-          <label className={styles.label}>Choose an image.</label>
+          <label className={styles.label}>Choose an image</label>
           <input type="file" onChange={(e) => setFile(e.target.files[0])} />
         </div>
         <div className={styles.item}>
-          <label className={styles.label}>Title/</label>
+          <label className={styles.label}>Title</label>
           <input
             className={styles.input}
             type="text"
@@ -46,32 +70,35 @@ const Add = ({ setClose }) => {
         </div>
         <div className={styles.item}>
           <label className={styles.label}>Desc</label>
-          <input
-            className={styles.input}
+          <textarea
+            // className={styles.input}
+            rows={4}
             type="text"
             onChange={(e) => setDesc(e.target.value)}
           />
         </div>
         <div className={styles.item}>
           <label className={styles.label}>Prices</label>
-          <input
-            className={`${styles.input} ${styles.inputSm}`}
-            type="number"
-            placeholder="Small"
-            onChange={(e) => changePrice(e, 0)}
-          />
-          <input
-            className={`${styles.input} ${styles.inputSm}`}
-            type="number"
-            placeholder="Medium"
-            onChange={(e) => changePrice(e, 1)}
-          />
-          <input
-            className={`${styles.input} ${styles.inputSm}`}
-            type="number"
-            placeholder="Large"
-            onChange={(e) => changePrice(e, 2)}
-          />
+          <div className={styles.priceContainer}>
+            <input
+              className={`${styles.input} ${styles.inputSm}`}
+              type="number"
+              placeholder="Small"
+              onChange={(e) => changePrice(e, 0)}
+            />
+            <input
+              className={`${styles.input} ${styles.inputSm}`}
+              type="number"
+              placeholder="Medium"
+              onChange={(e) => changePrice(e, 1)}
+            />
+            <input
+              className={`${styles.input} ${styles.inputSm}`}
+              type="number"
+              placeholder="Large"
+              onChange={(e) => changePrice(e, 2)}
+            />
+          </div>
         </div>
         <div className={styles.item}>
           <label className={styles.label}>Extra</label>
@@ -81,30 +108,31 @@ const Add = ({ setClose }) => {
               type="text"
               placeholder="Item"
               name="text"
-              onchange={handleExtraInput}
+              onChange={handleExtraInput}
             />
             <input
               className={`${styles.input} ${styles.inputSm}`}
               type="number"
               placeholder="Price"
               name="price"
-              onchange={handleExtraInput}
+              onChange={handleExtraInput}
             />
             <button className={styles.extraButton} onClick={handleExtra}>
               Add
             </button>
-            <div className={styles.extraItems}>
-              {extraOptions.map((option) => (
-                <span key={option.text} className={styles.extraItem}>
-                  {option.text}
-                </span>
-              ))}
-            </div>
-            <button className={styles.addButton} onClick={handleCreate}>
-              Create
-            </button>
+          </div>
+          <div className={styles.extraItems}>
+            {extraOptions.map((option) => (
+              <span key={option.text} className={styles.extraItem}>
+                {option.text}
+                {/* {option.price} */}
+              </span>
+            ))}
           </div>
         </div>
+        <button className={styles.addButton} onClick={handleCreate}>
+          Create
+        </button>
       </div>
     </div>
   );
