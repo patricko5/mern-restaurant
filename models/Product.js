@@ -17,7 +17,7 @@ const ProductSchema = new mongoose.Schema(
       required: true,
     },
     prices: {
-      type: [Number], //array of number
+      type: [Number],
       required: true,
     },
     extraOptions: {
@@ -29,9 +29,7 @@ const ProductSchema = new mongoose.Schema(
       ],
     },
   },
-  {
-    timestamps: true,
-  }
+  { timestamps: true }
 );
 
 export default mongoose.models.Product ||
