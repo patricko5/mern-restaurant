@@ -2,8 +2,8 @@ import dbConnect from "../../../util/mongo";
 import Order from "../../../models/Order";
 
 const handler = async (req, res) => {
-  const { method } = req;
-
+  const { method, cookies } = req;
+  const token = cookies.token;
   await dbConnect();
 
   if (method === "GET") {
@@ -15,6 +15,9 @@ const handler = async (req, res) => {
     }
   }
   if (method === "POST") {
+    if (!token || token !== process.env.TOKEN) {
+      return res.status(401).json("Not Authenticated!");
+    }
     try {
       const order = await Order.create(req.body);
       res.status(201).json(order);
