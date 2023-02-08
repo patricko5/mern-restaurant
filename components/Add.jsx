@@ -8,20 +8,33 @@ const Add = ({ setClose }) => {
   const [title, setTitle] = useState(null);
   const [desc, setDesc] = useState(null);
   const [prices, setPrices] = useState(null);
-  const [extra, setExtras] = useState(null);
-  const [extraOptions, setExtraOptions] = useState(null);
+  const [extra, setExtra] = useState(null);
+  const [extraOptions, setExtraOptions] = useState([]);
 
-  const handleExtraInput = () => {};
+  const changePrice = (e, index) => {
+    const currentPrices = prices;
+    currentPrices[index] = e.target.value;
+    setPrices(currentPrices);
+  };
+
+  const handleExtraInput = (e) => {
+    setExtra({ ...extra, [e.target.name]: e.target.value });
+  };
+  const handleExtra = (e) => {
+    setExtraOptions((prev) => [...prev, extra]);
+  };
+
+  const handleCreate = async () => {};
   return (
     <div className={styles.container}>
       <div className={styles.wrapper}>
         <span onClick={() => setClose(true)} className={styles.close}>
-          x
+          X
         </span>
         <h1>Add a new Pizza.</h1>
         <div className={styles.item}>
-          <label className={styles.label}>Choose an image./</label>
-          <input type="file" />
+          <label className={styles.label}>Choose an image.</label>
+          <input type="file" onChange={(e) => setFile(e.target.files[0])} />
         </div>
         <div className={styles.item}>
           <label className={styles.label}>Title/</label>
@@ -32,7 +45,7 @@ const Add = ({ setClose }) => {
           />
         </div>
         <div className={styles.item}>
-          <label className={styles.label}>Desc/</label>
+          <label className={styles.label}>Desc</label>
           <input
             className={styles.input}
             type="text"
@@ -77,6 +90,19 @@ const Add = ({ setClose }) => {
               name="price"
               onchange={handleExtraInput}
             />
+            <button className={styles.extraButton} onClick={handleExtra}>
+              Add
+            </button>
+            <div className={styles.extraItems}>
+              {extraOptions.map((option) => (
+                <span key={option.text} className={styles.extraItem}>
+                  {option.text}
+                </span>
+              ))}
+            </div>
+            <button className={styles.addButton} onClick={handleCreate}>
+              Create
+            </button>
           </div>
         </div>
       </div>
