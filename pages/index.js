@@ -3,7 +3,7 @@ import Head from "next/head";
 import { useState } from "react";
 import Featured from "../components/Featured";
 import PizzaList from "../components/PizzaList";
-import styles from "../styles/Home.module.css";
+// import styles from "../styles/Home.module.css";
 import Add from "../components/Add";
 import AddButton from "../components/AddButton";
 const Home = ({ pizzaList, admin }) => {
@@ -15,6 +15,7 @@ const Home = ({ pizzaList, admin }) => {
         <meta name="description" content="Worldwide Well-known Pizza" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
       <Featured />
 
       {admin && <AddButton setClose={setClose} />}
