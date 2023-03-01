@@ -10,7 +10,7 @@ const Login = () => {
 
   const handleClick = async () => {
     try {
-      await axios.post("/api/login", {
+      await axios.post("https://mern-restaurant.vercel.app/api/login", {
         username,
         password,
       });

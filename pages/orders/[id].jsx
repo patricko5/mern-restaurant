@@ -2,7 +2,8 @@ import styles from "../../styles/Order.module.css";
 import Image from "next/image";
 import axios from "axios";
 
-const Order = ({order}) => { //comes from getServerSideProps method, down below
+const Order = ({ order }) => {
+  //comes from getServerSideProps method, down below
   const status = order.status;
 
   const statusClass = (index) => {
@@ -118,7 +119,9 @@ const Order = ({order}) => { //comes from getServerSideProps method, down below
 };
 
 export const getServerSideProps = async ({ params }) => {
-  const res = await axios.get( `${process.env.NEXT_PUBLIC_BASE_URL}/api/orders/${params.id}`);
+  const res = await axios.get(
+    `https://mern-restaurant.vercel.app/api/orders/${params.id}`
+  );
   return {
     props: {
       order: res.data,
