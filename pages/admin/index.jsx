@@ -9,9 +9,7 @@ const Index = ({ orders, products }) => {
 
   const handleDelete = async (id) => {
     try {
-      const res = await axios.delete(
-        "/api/products/" + id
-      );
+      const res = await axios.delete("/api/products/" + id);
       setPizzaList(pizzaList.filter((pizza) => pizza._id !== id));
     } catch (err) {
       console.log(err);
@@ -131,8 +129,12 @@ export const getServerSideProps = async (ctx) => {
     };
   }
 
-  const productRes = await axios.get("/api/products");
-  const orderRes = await axios.get("/api/orders");
+  const productRes = await axios.get(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/products`
+  );
+  const orderRes = await axios.get(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/orders" `
+  );
 
   return {
     props: {
