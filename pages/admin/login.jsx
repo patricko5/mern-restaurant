@@ -14,7 +14,7 @@ const Login = () => {
         username,
         password,
       });
-      router.push("/admin");
+      router.push("https://mern-restaurant.vercel.app/admin");
     } catch (error) {
       setError(true);
     }

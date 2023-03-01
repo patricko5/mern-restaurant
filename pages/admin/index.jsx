@@ -28,9 +28,12 @@ const Index = ({ orders, products }) => {
     currentStatus += 1;
 
     try {
-      const res = await axios.put("https://mern-restaurant.vercel.app/api/orders/" + id, {
-        status: currentStatus,
-      });
+      const res = await axios.put(
+        "https://mern-restaurant.vercel.app/api/orders/" + id,
+        {
+          status: currentStatus,
+        }
+      );
       setOrderList([
         res.data,
         ...orderList.filter((order) => order._id !== id),
@@ -125,17 +128,17 @@ export const getServerSideProps = async (ctx) => {
   if (myCookie.token !== process.env.TOKEN) {
     return {
       redirect: {
-        destination: "/admin/login",
+        destination: "https://mern-restaurant.vercel.app/admin/login",
         permanent: false,
       },
     };
   }
 
   const productRes = await axios.get(
-    `https://mern-restaurant.vercel.app/api/products`
+    "https://mern-restaurant.vercel.app/api/products"
   );
   const orderRes = await axios.get(
-    `https://mern-restaurant.vercel.app/api/orders" `
+    "https://mern-restaurant.vercel.app/api/orders"
   );
 
   return {
