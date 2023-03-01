@@ -1,9 +1,13 @@
 import mongoose from "mongoose";
+import express from "express";
+import cors from "cors";
+
+const app = express();
+app.use(cors({ origin: "https://mern-restaurant.vercel.app" }));
 
 const MONGO_URL = process.env.MONGO_URL;
 
-mongoose.set('strictQuery', false);
-
+mongoose.set("strictQuery", false);
 
 if (!MONGO_URL) {
   throw new Error(
