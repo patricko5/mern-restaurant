@@ -15,9 +15,6 @@ const handler = async (req, res) => {
     }
   }
   if (method === "POST") {
-    if (!token || token !== process.env.TOKEN) {
-      return res.status(401).json("Not Authenticated!");
-    }
     try {
       const order = await Order.create(req.body);
       res.status(201).json(order);
